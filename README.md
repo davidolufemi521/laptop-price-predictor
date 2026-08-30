@@ -1,10 +1,10 @@
-﻿# 💻 Laptop Price Predictor
+# ?? Laptop Price Predictor
 
-A machine learning web app that predicts laptop prices in **Indian Rupees (₹)** and automatically converts them to **Nigerian Naira (₦)** using a live exchange rate API.
+A machine learning web app that predicts laptop prices in **Indian Rupees (?)** and automatically converts them to **Nigerian Naira (?)** using a live exchange rate API.
 
-Built with a custom-engineered dataset featuring **novel GPU categorization** and other hand-crafted features not commonly seen in similar projects — resulting in improved model accuracy.
+Built with a custom-engineered dataset featuring **novel GPU categorization** and other hand-crafted features not commonly seen in similar projects � resulting in improved model accuracy.
 
-> **Live App:** [Deploy on Streamlit Cloud](#deployment)
+> **Live App:** [Click here to try the app](https://laptop-price-predictor-j4lpxwbqgzbxsdwavfenpf.streamlit.app/)
 
 ---
 
@@ -12,8 +12,8 @@ Built with a custom-engineered dataset featuring **novel GPU categorization** an
 
 Most laptop price prediction projects online use raw GPU names as text. This project introduces a **custom binary GPU feature**:
 
-- Laptops with a **dedicated high-performance GPU** (Nvidia/AMD discrete) → `gpu_dedicated = 1`
-- Laptops with **integrated graphics** (Intel UHD, etc.) → `gpu_dedicated = 0`
+- Laptops with a **dedicated high-performance GPU** (Nvidia/AMD discrete) ? `gpu_dedicated = 1`
+- Laptops with **integrated graphics** (Intel UHD, etc.) ? `gpu_dedicated = 0`
 
 This single feature significantly improved model accuracy because dedicated GPUs are one of the strongest price signals for laptops (Gaming, Workstation laptops cost significantly more).
 
@@ -21,13 +21,13 @@ This single feature significantly improved model accuracy because dedicated GPUs
 | Feature | How It Was Created |
 |---------|-------------------|
 | `gpu_dedicated` | Binary: 1 = dedicated GPU, 0 = integrated (novel feature) |
-| `Total_Pixels` | `sqrt(X_res² + Y_res²) / screen_size` — measures pixel density (PPI) |
+| `Total_Pixels` | `sqrt(X_res� + Y_res�) / screen_size` � measures pixel density (PPI) |
 | `Full_HD` | Binary: 1 if resolution is 1920x1080, else 0 |
 | `type_score` | Ordinal encoding: Netbook=0, Notebook=1, Ultrabook=3, Gaming=4, Workstation=5 |
 | `Clock_Speed_GHz` | Extracted CPU clock speed from raw CPU string |
 | `IPS_Panel` | Binary: 1 if IPS display, else 0 |
 | `Touchscreen` | Binary: 1 if touchscreen, else 0 |
-| Log Price Target | `log(price)` used as target → `expm1()` to reverse → reduces skewness |
+| Log Price Target | `log(price)` used as target ? `expm1()` to reverse ? reduces skewness |
 
 ---
 
@@ -35,8 +35,8 @@ This single feature significantly improved model accuracy because dedicated GPUs
 
 - Select laptop brand, type, RAM, storage, screen, CPU, GPU
 - Detects whether GPU is **dedicated or integrated** (the novel feature)
-- Predicts price in **INR (₹)**
-- Automatically fetches **live INR → NGN exchange rate** and shows price in **Naira (₦)**
+- Predicts price in **INR (?)**
+- Automatically fetches **live INR ? NGN exchange rate** and shows price in **Naira (?)**
 - Falls back to a static rate if the internet is unavailable
 - Clean two-column Streamlit UI
 
@@ -44,7 +44,7 @@ This single feature significantly improved model accuracy because dedicated GPUs
 
 ## App Screenshot
 
-> *(Add a screenshot of the running app here)*
+[![App Screenshot](app_screenshot.png)](https://laptop-price-predictor-j4lpxwbqgzbxsdwavfenpf.streamlit.app/)
 
 ---
 
@@ -88,8 +88,8 @@ The app will open at `http://localhost:8501`
 | Property | Value |
 |----------|-------|
 | Algorithm | XGBoost (Gradient Boosting) |
-| Target Variable | `log(price_INR)` — log-transformed to reduce skewness |
-| Prediction Output | `expm1(log_price)` → actual INR price |
+| Target Variable | `log(price_INR)` � log-transformed to reduce skewness |
+| Prediction Output | `expm1(log_price)` ? actual INR price |
 | Features Used | 35+ engineered features (see table above) |
 | Brands Covered | Apple, HP, Dell, Lenovo, Asus, Acer, MSI, Razer, Samsung, and more |
 
@@ -101,13 +101,13 @@ The app will open at `http://localhost:8501`
 Laptop prices are heavily right-skewed (a few very expensive laptops pull the mean up). Taking `log(price)` makes the distribution more normal, which helps the model learn better. At prediction time, `expm1()` reverses this to get the real price.
 
 ### Why encode GPU as binary (dedicated vs integrated)?
-Raw GPU names like "Nvidia GeForce GTX 1080" vs "Intel UHD 620" have hundreds of unique values. Instead of one-hot encoding all of them (leading to sparse data), a single binary feature `gpu_dedicated` captures the most important price signal — whether the GPU is high-end or not. This reduced noise and improved accuracy.
+Raw GPU names like "Nvidia GeForce GTX 1080" vs "Intel UHD 620" have hundreds of unique values. Instead of one-hot encoding all of them (leading to sparse data), a single binary feature `gpu_dedicated` captures the most important price signal � whether the GPU is high-end or not. This reduced noise and improved accuracy.
 
 ### Live Currency Conversion
 The app fetches live exchange rates from two sources:
 1. **Frankfurter API** (primary)
 2. **Open Exchange Rates API** (backup)
-3. Static fallback `1 INR = ₦18.5` if both APIs are down
+3. Static fallback `1 INR = ?18.5` if both APIs are down
 
 ---
 
@@ -118,7 +118,7 @@ The app fetches live exchange rates from two sources:
 2. Go to **share.streamlit.io**
 3. Connect your GitHub account
 4. Select this repo and `app.py`
-5. Click **Deploy** — done!
+5. Click **Deploy** � done!
 
 ---
 
@@ -138,7 +138,7 @@ requests
 ## Dataset
 
 Based on the **Laptop Price Dataset** from Kaggle (SmartPrix/Flipkart scraped data).
-Prices are in Indian Rupees (INR) — the app converts to Naira (NGN) in real time.
+Prices are in Indian Rupees (INR) � the app converts to Naira (NGN) in real time.
 
 ---
 
@@ -156,4 +156,4 @@ Prices are in Indian Rupees (INR) — the app converts to Naira (NGN) in real ti
 
 ## License
 
-MIT License — free to use for research and educational purposes.
+MIT License � free to use for research and educational purposes.
